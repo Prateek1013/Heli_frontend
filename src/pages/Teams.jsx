@@ -7,7 +7,17 @@ const Teams = (props) => {
         setcurrTeam(temp);
     }
     const saveteam=()=>{
-        
+        fetch('http://localhost:4000/addTeam',{
+            method:'post',
+            headers:{
+                'Content-type':'application/json'
+            },
+            body: JSON.stringify(currTeam)
+        }).then(()=>{
+            console.log('inserted')
+        }).catch((err)=>{
+            console.log(err)
+        })
     }
     return ( 
         <>
