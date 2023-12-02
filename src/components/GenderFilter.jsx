@@ -8,7 +8,7 @@ const GenderFilter = (props) => {
     for(const gender of genders){
         const obj={
             key:gender,
-            label:(<a href='#'>{gender}</a>)
+            label:(<a>{gender}</a>)
         }
         items.push(obj);
     }

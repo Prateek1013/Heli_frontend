@@ -8,7 +8,7 @@ const DomainFilter = (props) => {
     for(const domain of domains){
         const obj={
             key:domain,
-            label:(<a href='#'>{domain}</a>)
+            label:(<a>{domain}</a>)
         }
         items.push(obj);
     }

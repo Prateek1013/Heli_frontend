@@ -4,35 +4,12 @@ import DomainFilter from '../components/DomainFilter';
 import AvailableFilter from '../components/AvailableFilter';
 import GenderFilter from '../components/GenderFilter';
 import { useEffect, useState } from 'react';
-
 const LIMIT=20;
-const Users = () => {
-    const [chars,setchars]=useState([]);
-  const [data,setdata]=useState([]);
-  const [domains,setdomains]=useState([]);
-  const [genders,setgenders]=useState([]);
-  const [pagecount, setpagecount] = useState(0);
-  const [currpage, setcurrpage] = useState(1);
+const Users = (props) => {
+  const {chars,data,pagecount,genders,domains,setchars,currpage,setcurrpage}=props;
   const [selectedDomain,setselectedDomain]=useState("Select Domain");
   const [selectedavailable,setavailable]=useState("Select Available");
   const [selectedgender,setgender]=useState("Select Gender");
-
-  useEffect(()=>{
-    const func=()=>{
-      fetch('http://localhost:4000/get').then(resp=>resp.json()).then(jsondata=>{
-      setdata(jsondata);
-      setchars(jsondata.slice(0,LIMIT));
-      setpagecount(Math.ceil(jsondata.length / LIMIT ));
-      fetch('http://localhost:4000/getAllDomain').then(resp=>resp.json()).then(jsondata=>{
-        setdomains(jsondata);
-        fetch('http://localhost:4000/getAllgenders').then(resp=>resp.json()).then(jsondata=>{
-          setgenders(jsondata);
-        })
-      })
-      })
-    }
-    func();
-  },[])
   const handleprev = () => {
     if (currpage > 1) {
       setcurrpage(currpage - 1);
@@ -53,9 +30,6 @@ const Users = () => {
   return (
     <>
       <div>
-        <div style={{ textAlign: 'center', background: 'cyan' }}>
-          <h1>Heliverse</h1>
-        </div>
         <div style={{ marginTop: '8px', textAlign: 'left', display:'flex'}}>
           <input type="text" placeholder='Search name...'  onChange={(e) => {
            if(e.target.value)
@@ -92,7 +66,8 @@ const Users = () => {
                       cover={<img alt="example" src={`${item.avatar}`}/>}
                     >
                       <h2>{item.first_name} {item.last_name}</h2>
-                      <p>{item.domain} && {item.gender} && {item.available}</p>
+                      <p>{item.domain} && {item.gender} && {(item.available)?'Available':'Not available'}</p>
+                      <Button >Add</Button>
                     </Card>
 
                   </Col>
