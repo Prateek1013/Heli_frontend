@@ -3,10 +3,10 @@ import { Col, Row } from 'antd';
 import DomainFilter from '../components/DomainFilter';
 import AvailableFilter from '../components/AvailableFilter';
 import GenderFilter from '../components/GenderFilter';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 const LIMIT=20;
 const Users = (props) => {
-  const {chars,data,pagecount,genders,domains,setchars,currpage,setcurrpage}=props;
+  const {chars,data,pagecount,genders,domains,setchars,currpage,setcurrpage,currTeam,setcurrTeam}=props;
   const [selectedDomain,setselectedDomain]=useState("Select Domain");
   const [selectedavailable,setavailable]=useState("Select Available");
   const [selectedgender,setgender]=useState("Select Gender");
@@ -26,6 +26,26 @@ const Users = (props) => {
     fetch(URL).then(resp=>resp.json()).then(jsondata=>{
       setchars(jsondata);
     })
+  }
+  const teamhandle=(item)=>{
+    for (let i = 0; i < currTeam.length; i++) {
+      const team = currTeam[i];
+      
+      if (team == item) {
+        alert(`${item.first_name} ${item.last_name} already added in the team`);
+        return;
+      } else if (team.domain == item.domain) {
+        alert(`A member from ${team.domain} already exists`);
+        return;
+      }
+      else if(!item.available) {
+        alert(`${item.first_name} ${item.last_name} is not available`);
+        return;
+      }
+    }
+    
+    currTeam.push(item);
+    setcurrTeam(currTeam);
   }
   return (
     <>
@@ -67,7 +87,7 @@ const Users = (props) => {
                     >
                       <h2>{item.first_name} {item.last_name}</h2>
                       <p>{item.domain} && {item.gender} && {(item.available)?'Available':'Not available'}</p>
-                      <Button >Add</Button>
+                      <Button onClick={()=> teamhandle(item)}>Add</Button>
                     </Card>
 
                   </Col>

@@ -12,7 +12,7 @@ function App() {
   const [genders, setgenders] = useState([]);
   const [pagecount, setpagecount] = useState(0);
   const [currpage, setcurrpage] = useState(1);
-
+  const [currTeam,setcurrTeam]=useState([]);
 
   useEffect(() => {
     const func = () => {
@@ -34,8 +34,11 @@ function App() {
   return (
     <>
       <Title setoggle={setoggle} />
-      {toggle ? (<Users chars={chars} data={data} domains={domains} genders={genders} 
-      pagecount={pagecount} setchars={setchars} currpage={currpage} setcurrpage={setcurrpage} />) : (<Teams />)}
+      {toggle ? 
+      (<Users chars={chars} data={data} domains={domains} genders={genders} 
+      pagecount={pagecount} setchars={setchars} currpage={currpage} setcurrpage={setcurrpage} currTeam={currTeam}
+      setcurrTeam={setcurrTeam} />) :
+       (<Teams currTeam={currTeam} setcurrTeam={setcurrTeam} />)}
     </>
   )
 }
