@@ -4,6 +4,7 @@ import Users from './pages/Users';
 import Title from './components/Title';
 import Teams from './pages/Teams';
 const LIMIT = 20;
+const BACKEND_URL='http://localhost:4000';
 function App() {
   const [toggle, setoggle] = useState(true);
   const [chars, setchars] = useState([]);
@@ -16,13 +17,13 @@ function App() {
 
   useEffect(() => {
     const func = () => {
-      fetch('http://localhost:4000/get').then(resp => resp.json()).then(jsondata => {
+      fetch(`${BACKEND_URL}/get`).then(resp => resp.json()).then(jsondata => {
         setdata(jsondata);
         setchars(jsondata.slice(0, LIMIT));
         setpagecount(Math.ceil(jsondata.length / LIMIT));
-        fetch('http://localhost:4000/getAllDomain').then(resp => resp.json()).then(jsondata => {
+        fetch(`${BACKEND_URL}/getAllDomain`).then(resp => resp.json()).then(jsondata => {
           setdomains(jsondata);
-          fetch('http://localhost:4000/getAllgenders').then(resp => resp.json()).then(jsondata => {
+          fetch(`${BACKEND_URL}/getAllgenders`).then(resp => resp.json()).then(jsondata => {
             setgenders(jsondata);
           })
         })

@@ -50,18 +50,18 @@ const Users = (props) => {
   return (
     <>
       <div>
-        <div style={{ marginTop: '8px', textAlign: 'left', display:'flex'}}>
+        <div style={{ marginTop: '8px', textAlign: 'center',alignContent:'center'}}>
           <input type="text" placeholder='Search name...'  onChange={(e) => {
            if(e.target.value)
            setchars(data.filter(item => item.first_name.toLowerCase().includes(e.target.value) || item.last_name.toLowerCase().includes(e.target.value) ));
            else setchars(data.slice((currpage-1)*LIMIT,LIMIT*currpage));
           }} />
         </div>
-        <div style={{display:'flex'}}>
+        <div style={{display:'flex' }}>
        <DomainFilter domains={domains} selectedDomain={selectedDomain} setdomain={setselectedDomain}/>
        <AvailableFilter selectedavailable={selectedavailable} setavailable={setavailable}/>
        <GenderFilter  genders={genders} selectedgender={selectedgender} setgender={setgender}/>
-       <Button type='text' onClick={filterhandle}>Filter!</Button>
+       <Button type='primary' style={{marginLeft:'50px'}} onClick={filterhandle}>Filter!</Button>
        </div>
         <div style={{ marginTop: '30px' }}>
           <Row gutter={[24, 24]}>

@@ -1,4 +1,5 @@
-import { Dropdown } from "antd";
+import { Dropdown, Space } from "antd";
+import { DownOutlined } from '@ant-design/icons';
 
 
 const GenderFilter = (props) => {
@@ -16,15 +17,18 @@ const GenderFilter = (props) => {
         setgender(key);
       };
     return (
-        <div style={{ marginLeft: '50px' }}>filter:
+        <div style={{ marginLeft: '50px'}}>
             <Dropdown
                 menu={{
                     items,
                     onClick,
                 }}
             >
-                <a onClick={(e) => e.preventDefault()}>
+                <a  onClick={(e) => e.preventDefault()}>
+                    <Space>
                    {selectedgender} 
+                   <DownOutlined/>
+                   </Space>
                 </a>
             </Dropdown>
         </div>

@@ -1,4 +1,5 @@
-import { Dropdown } from "antd";
+import { Dropdown ,Space} from "antd";
+import { DownOutlined } from '@ant-design/icons';
 
 
 const AvailableFilter = (props) => {
@@ -18,7 +19,7 @@ const AvailableFilter = (props) => {
         setavailable(key);
       };
     return (
-        <div style={{ marginLeft: '50px' }}>filter:
+        <div style={{ marginLeft: '50px' }}>
             <Dropdown
                 menu={{
                     items,
@@ -26,7 +27,11 @@ const AvailableFilter = (props) => {
                 }}
             >
                 <a onClick={(e) => e.preventDefault()}>
+                    <Space>
+
                    {selectedavailable} 
+                   <DownOutlined/>
+                    </Space>
                 </a>
             </Dropdown>
         </div>
