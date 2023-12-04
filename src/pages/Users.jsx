@@ -55,7 +55,7 @@ const Users = (props) => {
         <div style={{ marginTop: '8px', textAlign: 'center',alignContent:'center'}}>
           <input type="text" placeholder='Search name...'  onChange={(e) => {
            if(e.target.value)
-           setchars(data.filter(item => item.first_name.toLowerCase().includes(e.target.value.toLocaleLowerCase()) || item.last_name.toLowerCase().includes(e.target.value.toLocaleLowerCase()) ));
+           setchars(data.filter(item => item.first_name.toLowerCase().includes(e.target.value.toLowerCase()) || item.last_name.toLowerCase().includes(e.target.value.toLowerCase()) ));
            else setchars(data.slice((currpage-1)*LIMIT,LIMIT*currpage));
           }} />
         </div>
