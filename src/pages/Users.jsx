@@ -5,6 +5,8 @@ import AvailableFilter from '../components/AvailableFilter';
 import GenderFilter from '../components/GenderFilter';
 import { useState } from 'react';
 const LIMIT=20;
+const BACKEND_URL='https://heliverse-backend-4o3c.onrender.com'
+
 const Users = (props) => {
   const {chars,data,pagecount,genders,domains,setchars,currpage,setcurrpage,currTeam,setcurrTeam}=props;
   const [selectedDomain,setselectedDomain]=useState("Select Domain");
@@ -22,7 +24,7 @@ const Users = (props) => {
       setchars(data.slice((currpage)*LIMIT,LIMIT*(currpage+1)));}
   }
   const filterhandle=()=>{
-    const URL=`http://localhost:4000/filter?domain=${selectedDomain}&available=${selectedavailable}&gender=${selectedgender}`;
+    const URL=`${BACKEND_URL}/filter?domain=${selectedDomain}&available=${selectedavailable}&gender=${selectedgender}`;
     fetch(URL).then(resp=>resp.json()).then(jsondata=>{
       setchars(jsondata);
     })

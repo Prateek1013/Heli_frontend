@@ -4,7 +4,8 @@ import Users from './pages/Users';
 import Title from './components/Title';
 import Teams from './pages/Teams';
 const LIMIT = 20;
-const BACKEND_URL='http://localhost:4000';
+// const BACKEND_URL='http://localhost:4000';
+const BACKEND_URL='https://heliverse-backend-4o3c.onrender.com'
 function App() {
   const [toggle, setoggle] = useState(true);
   const [chars, setchars] = useState([]);

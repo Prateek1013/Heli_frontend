@@ -1,7 +1,7 @@
 import { Card ,Button} from "antd";
 import {Row,Col} from "antd"
 import { useState } from "react";
-const BACKEND_URL='http://localhost:4000';
+const BACKEND_URL='https://heliverse-backend-4o3c.onrender.com'
 const Teams = (props) => {
     const [savedTeams,setsavedTeams]=useState([]);
     const {currTeam,setcurrTeam}=props;
